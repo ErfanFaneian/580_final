@@ -6,7 +6,7 @@ from collections import Iterable
 
 
 # This function makes it easier to get readable print-outputs for the normality test
-def normaltestPrint(array, dataset_name):
+def normaltest_Print(array, dataset_name):
     k2, p_val = stats.normaltest(array)
     print("\n" + dataset_name + "--- Dataset Stats:\n" + "Size of " + dataset_name + " Dataset = " + str(len(array)) + "\nNormality Test-->\n")
     print("p value = " + str(p_val) + "\n")
@@ -62,3 +62,12 @@ def pluck_digits(df, col_name):
         norm_lis.append(result)
     df[col_name] = norm_lis
     return df
+
+def spearmantest_Print(x, y, x_name, y_name):
+    print("The null hypothesis is that values in the '" +x_name+ "' dataset do not correlate with the values in the '" +y_name+ "' dataset. \n")
+    sp_r, p_value = stats.spearmanr(x, y)
+    if (p_value > 0.05):
+        print("We cannot reject the null hypothesis. \n")
+    else:
+        print("We reject the null hypothesis. \n")
+    print("Spearman's R Correlation Coeffecient = " + str(sp_r) + "\n" + "p value = " + str(p_value) + "\n")
